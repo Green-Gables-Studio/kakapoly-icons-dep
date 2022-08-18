@@ -13,20 +13,7 @@ import iconsDump from "../../database/dump/collections/icons.json";
 import Database from "../../database/database";
 import { RxDocument } from "rxdb";
 import { IconCollection, IconDocType } from "../../database/schema/icon";
-
-type IconSet = {
-  icons: {
-    id: string;
-    name?: string | undefined;
-    svg?: string | undefined;
-  }[];
-  id?: string | undefined;
-  slug?: string | undefined;
-  name?: string | undefined;
-  projectUrl?: string | undefined;
-  figmaFileUrl?: string | undefined;
-  currentVersion?: string | undefined;
-};
+import { IconSet } from "../../types";
 
 export const getStaticProps = async (context: GetStaticPropsContext) => {
   const { locale, params } = context;
@@ -47,13 +34,15 @@ export const getStaticProps = async (context: GetStaticPropsContext) => {
     "icons"
   );
 
-  const iconSet: IconSet = {
-    ...iconSetdocument?.toJSON(),
-    icons: icons.map((icon) => {
-      const { iconSet, ...rest } = icon.toJSON();
-      return rest;
-    }),
-  };
+  const iconSet: IconSet | null = iconSetdocument
+    ? {
+        ...iconSetdocument.toJSON(),
+        icons: icons.map((icon) => {
+          const { iconSet, ...rest } = icon.toJSON();
+          return rest;
+        }),
+      }
+    : null;
 
   return {
     props: {
@@ -84,7 +73,7 @@ const IconSet: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = (
   const { iconSet } = props;
   const { t } = useTranslation("common");
 
-  return <div>Hello world, {iconSet.name}</div>;
+  return <div>Hello world, {iconSet?.name}</div>;
 };
 
 export default IconSet;

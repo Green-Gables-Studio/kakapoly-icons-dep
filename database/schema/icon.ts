@@ -27,7 +27,7 @@ const iconSchemaLiteral = {
       type: "string",
     },
   },
-  required: ["id"],
+  required: ["id", "name", "iconSet", "svg"],
 } as const;
 
 const iconSchemaTyped = toTypedRxJsonSchema(iconSchemaLiteral);
