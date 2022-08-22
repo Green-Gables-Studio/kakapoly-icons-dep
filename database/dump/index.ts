@@ -25,7 +25,7 @@ async function importHeroicons() {
       const svg = iconFileBuffer.toString();
       const icon = await db.icons.insert({
         id: nanoid(),
-        name: outlineIconFilename,
+        name: outlineIconFilename.replace(".svg", ""),
         iconSet: iconSetDocument.id,
         svg,
       });
@@ -41,7 +41,7 @@ async function importHeroicons() {
       const svg = iconFileBuffer.toString();
       const icon = await db.icons.insert({
         id: nanoid(),
-        name: solidIconFilename,
+        name: solidIconFilename.replace(".svg", ""),
         iconSet: iconSetDocument.id,
         svg,
       });
@@ -80,7 +80,7 @@ async function importFeather() {
       const svg = iconFileBuffer.toString();
       const icon = await db.icons.insert({
         id: nanoid(),
-        name: filename,
+        name: filename.replace(".svg", ""),
         iconSet: iconSetDocument.id,
         svg,
       });
@@ -119,7 +119,7 @@ async function importIonicons() {
       const svg = iconFileBuffer.toString();
       const icon = await db.icons.insert({
         id: nanoid(),
-        name: filename,
+        name: filename.replace(".svg", ""),
         iconSet: iconSetDocument.id,
         svg,
       });

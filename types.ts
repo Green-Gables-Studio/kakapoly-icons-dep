@@ -1,7 +1,9 @@
+type IconSetAsIconProperty = Omit<IconSet, "icons">;
+
 export type Icon = {
   id: string;
   name: string;
-  iconSet: string;
+  iconSet: IconSetAsIconProperty;
   svg: string;
 };
 
