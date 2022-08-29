@@ -35,10 +35,12 @@ export const getStaticProps = async (context: GetStaticPropsContext) => {
     const { icons: _icons, ...rest } = iconSetDocument.toJSON();
     iconSets.push({
       ...rest,
-      icons: icons.map((icon) => {
-        const { iconSet, ...rest } = icon.toJSON();
-        return rest;
-      }),
+      icons: icons
+        .map((icon) => {
+          const { iconSet, ...rest } = icon.toJSON();
+          return rest;
+        })
+        .slice(0, 9),
     });
   }
 
