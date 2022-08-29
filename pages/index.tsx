@@ -1,14 +1,19 @@
-import type { NextPage } from "next";
+import type { GetServerSideProps, NextPage } from "next";
 
-export async function getServerSideProps() {
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { locale } = context;
+
+  const localePrefix = locale === "en" ? "" : `/${locale}`;
+
+  const destination = `${localePrefix}/icon-sets`;
+
   return {
     redirect: {
-      destination: "/icon-sets",
+      destination,
       permanent: false,
-      locale: false,
     },
   };
-}
+};
 
 const Home: NextPage = () => {
   return null;

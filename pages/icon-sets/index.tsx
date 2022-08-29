@@ -72,7 +72,7 @@ const IconSets: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = (
         <header className="border border-solid">
           <nav className="px-8 flex justify-between items-center h-20">
             <div>
-              <Link href="/">
+              <Link href="/" locale={locale}>
                 <a>Kakapoly Icons</a>
               </Link>
             </div>
